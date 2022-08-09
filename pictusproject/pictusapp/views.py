@@ -19,7 +19,7 @@ class PostView(views.APIView):
             return Response(serializer.data)
         return Response(serializer.data)
     
-class PostDeailView(views.APIView):
+class PostDetailView(views.APIView):
     def get(self, request, pk, format=None):
         post=get_object_or_404(Post, pk=pk)
         serializer=PostSerializer(post)

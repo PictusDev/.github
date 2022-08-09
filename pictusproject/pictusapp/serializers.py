@@ -11,6 +11,18 @@ class PostCreateSerializer(serializers.Serializer):
         model = Post
         fields=['id','title','content','film','camera','image','hashtag']
 
+    def create(self, validated_data):
+        return Post.objects.create(**validated_data)
+
+# {
+# "title":"pic",
+# "content":"yumi",
+# "film":"1",
+# "camera":"2",
+# "hashtag" :"asd",
+# "image":"as"
+# }
+
 class PostSerializer(serializers.Serializer):
     comment=CommentSerializer(many=True, read_only=True)
 
