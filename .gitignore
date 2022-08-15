@@ -1,0 +1,13 @@
+//.gitignore
+__pycache__/
+*.py[code]
+
+.Python
+newvenv.
+
+dbsqlite3
+.DS_Store
+
+.vscode/
+
+.env
