@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from pickle import FALSE
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,6 +27,7 @@ SECRET_KEY = 'django-insecure-=q5)p+2&(oh-vl#z922eku)zl1xas&*s(k*kpqmpi0#xy^scqp
 DEBUG = True
 
 ALLOWED_HOSTS = []
+# 'jain5379.pythonanywhere.com'
 
 
 # Application definition
@@ -45,7 +47,9 @@ INSTALLED_APPS = [
 
 import os
 
-# AUTH_USER_MODEL='pictusapp.User'
+
+STATIC_URL='/static/'
+STATIC_ROOT=os.path.join(BASE_DIR, "static")
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
 REST_FRAMEWORK={
@@ -55,6 +59,7 @@ REST_FRAMEWORK={
 }
 
 MIDDLEWARE = [
+    # 'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -63,6 +68,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# CORS_ORIGIN_WHITELIST=['http://127.0.0.1:3000', 'http://localhost:3000']
+# CORS_ALLOW_CREDENTIALS=True
 
 ROOT_URLCONF = 'pictusproject.urls'
 
@@ -130,7 +138,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
 
 
 # Default primary key field type

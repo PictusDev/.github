@@ -9,7 +9,7 @@ class CommentSerializer(serializers.ModelSerializer):
 class PostCreateSerializer(serializers.Serializer):
     class Meta:
         model = Post
-        fields=['id','title','content','film','camera','image','hashtag']
+        fields=['id','content','film','camera','image','hashtag']
 
     def create(self, validated_data):
         return Post.objects.create(**validated_data)
@@ -28,5 +28,5 @@ class PostSerializer(serializers.Serializer):
 
     class Meta:
         model=Post
-        fields=['id','title','content','film','camera','image','like','hashtag','created_at','author','comment']
+        fields=['id','content','film','camera','image','like','hashtag','created_at','author','comment']
 
