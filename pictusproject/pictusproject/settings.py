@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'pictusapp',
     'pictususer',
+    'corsheaders',
+    'django_filters',
 ]
 
 import os
@@ -56,10 +58,13 @@ REST_FRAMEWORK={
     'DEFAULT_AUTHENTICATION_CLASSES':[
         'rest_framework.authentication.TokenAuthentication',
     ],
+    'DEFAULT_FILTER_BACKENDS':[
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ],
 }
 
 MIDDLEWARE = [
-    # 'corsheaders.middleware.CorsMiddleware',
+    #'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -69,8 +74,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# CORS_ORIGIN_WHITELIST=['http://127.0.0.1:3000', 'http://localhost:3000']
-# CORS_ALLOW_CREDENTIALS=True
+#CORS_ORIGIN_WHITELIST=['http://127.0.0.1:3000', 'http://localhost:3000']
+#CORS_ALLOW_CREDENTIALS=True
 
 ROOT_URLCONF = 'pictusproject.urls'
 
@@ -128,7 +133,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
