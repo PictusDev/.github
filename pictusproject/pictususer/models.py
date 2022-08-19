@@ -14,6 +14,7 @@ class Profile(models.Model):
     image=models.ImageField(upload_to='profile/', default='default.png')
     email=models.CharField(max_length=128,null=True)
 
+    
 
 
 @receiver(post_save, sender=User)

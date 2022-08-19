@@ -26,6 +26,7 @@ class LoginView(generics.GenericAPIView):
 class ProfileView(generics.RetrieveUpdateAPIView):
     queryset=Profile.objects.all()
     serializer_class=ProfileSerializer
+    lookup_field='nickname'
 
 class ProfileListView(views.APIView):
     def get(self, request, format=None):
