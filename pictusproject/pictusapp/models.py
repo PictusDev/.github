@@ -36,7 +36,6 @@ class Post(models.Model):
     author=models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
     image=models.ImageField(null=False, upload_to='pictus_photo')
     profile=models.ForeignKey(Profile, on_delete=models.CASCADE, blank=True, null=True)
-    # nickname= models.ForeignKey(Profile.nickname, on_delete=models.CASCADE, related_name='nickname')
     content=models.TextField(null=False)
     created_at=models.DateTimeField(auto_now_add=True)
     film=models.CharField(max_length=2, choices=Film_Choice)

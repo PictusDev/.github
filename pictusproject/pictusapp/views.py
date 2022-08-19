@@ -8,6 +8,10 @@ from rest_framework.response import Response
 from .permissions import CustomReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
 
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.generics import get_object_or_404
+from rest_framework.permissions import IsAuthenticated
+
 # Create your views here.
 
 # class PostView(views.APIView):
@@ -46,7 +50,7 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset=Post.objects.all()
     permission_classes=[CustomReadOnly]
     filter_backends=[DjangoFilterBackend]
-    filterset_fields=('author','like','film','camera','content','profile','nickname')
+    filterset_fields=('author','like','film','camera','profile',)
 
     def get_serializer_class(self):
         if self.action == 'list' or 'retrieve':
@@ -56,6 +60,18 @@ class PostViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         profile=Profile.objects.get(user=self.request.user)
         serializer.save(author=self.request.user, profile=profile)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def like_post(request, pk):
+    post=get_object_or_404(Post, pk=pk)
+    if request.user in post.like.all():
+        post.like.remove(request.user)
+        return Response({'status':'remove'})
+    else:
+        post.like.add(request.user)
+
+    return Response({'status':'ok'})
 
 # class CommentView(views.APIView):
 #     def post(self, request, format=None):

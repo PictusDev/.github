@@ -23,6 +23,6 @@ from django.urls import *
 
 urlpatterns = [
     path('myadmin/', admin.site.urls),
-    path('', include('pictusapp.urls')),
+    path('pictus/', include('pictusapp.urls')),
     path('users/', include('pictususer.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
